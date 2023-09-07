@@ -138,4 +138,69 @@ public class TelevisionController {
 
     }
 
+    @PatchMapping("/televisions/{id}")
+    public ResponseEntity<Television> updatePartialTelevision(@PathVariable Long id, @RequestBody Television newTelevision) {
+        Optional<Television> television = televisionRepository.findById(id);
+
+        if (television.isEmpty()) {
+            throw new RecordNotFoundException("No television found with id: " + id);
+        } else {
+            // Het verschil tussen een patch en een put methode is dat een put een compleet object update,
+            // waar een patch een gedeeltelijk object kan updaten.
+            // Zet alles in een null-check, om te voorkomen dat je perongelijk bestaande waardes overschrijft met null-waardes.
+            // Intellij heeft een handige postfix voor null-checks. Dit doe je door bijvoorbeeld "newTelevision.getBrand().notnull" te typen en dan op tab te drukken.
+            Television television1 = television.get();
+            if (newTelevision.getAmbiLight() != null) {
+                television1.setAmbiLight(newTelevision.getAmbiLight());
+            }
+            if (newTelevision.getAvailableSize() != null) {
+                television1.setAvailableSize(newTelevision.getAvailableSize());
+            }
+            if (newTelevision.getBluetooth()) {
+                television1.setBluetooth(newTelevision.getBluetooth());
+            }
+            if (newTelevision.getBrand() != null) {
+                television1.setBrand(newTelevision.getBrand());
+            }
+            if (newTelevision.getHdr() != null) {
+                television1.setHdr(newTelevision.getHdr());
+            }
+            if (newTelevision.getName() != null) {
+                television1.setName(newTelevision.getName());
+            }
+            if (newTelevision.getOriginalStock() != null) {
+                television1.setOriginalStock(newTelevision.getOriginalStock());
+            }
+            if (newTelevision.getPrice() != null) {
+                television1.setPrice(newTelevision.getPrice());
+            }
+            if (newTelevision.getRefreshRate() != null) {
+                television1.setRefreshRate(newTelevision.getRefreshRate());
+            }
+            if (newTelevision.getScreenQuality() != null) {
+                television1.setScreenQuality(newTelevision.getScreenQuality());
+            }
+            if (newTelevision.getScreenType() != null) {
+                television1.setScreenType(newTelevision.getScreenType());
+            }
+            if (newTelevision.getSmartTv() != null) {
+                television1.setSmartTv(newTelevision.getSmartTv());
+            }
+            if (newTelevision.getSold() != null) {
+                television1.setSold(newTelevision.getSold());
+            }
+            if (newTelevision.getType() != null) {
+                television1.setType(newTelevision.getType());
+            }
+            if (newTelevision.getVoiceControl() != null) {
+                television1.setVoiceControl(newTelevision.getVoiceControl());
+            }
+            if (newTelevision.getWifi() != null) {
+                television1.setWifi(newTelevision.getWifi());
+            }
+
+            Television returnTelevision = televisionRepository.save(television1);
+            return ResponseEntity.ok().body(returnTelevision);
+        }
+
 }
