@@ -202,5 +202,6 @@ public class TelevisionController {
             Television returnTelevision = televisionRepository.save(television1);
             return ResponseEntity.ok().body(returnTelevision);
         }
+    }
 
 }
