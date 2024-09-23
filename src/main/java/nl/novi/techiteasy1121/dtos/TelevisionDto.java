@@ -1,80 +1,31 @@
-package nl.novi.techiteasy1121.models;
+package nl.novi.techiteasy1121.dtos;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+public class TelevisionDto {
 
-@Entity
-@Table(name = "televisions", schema = "public") // Ensure the schema is set to "public"
-public class Television {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
-
-    @Column(name = "name")
     private String name;
-
-    @Column(name = "brand")
     private String brand;
-
-    @Column(name = "price")
     private double price;
-
-    @Column(name = "original_stock")
     private int originalStock;
-
-    @Column(name = "sold")
     private int sold;
-
-    @Column(name = "type")
     private String type;
-
-    @Column(name = "available_size")
     private String availableSize;
-
-    @Column(name = "refresh_rate")
     private String refreshRate;
-
-    @Column(name = "screen_type")
     private String screenType;
-
-    @Column(name = "screen_quality")
     private String screenQuality;
-
-    @Column(name = "smart_tv")
     private boolean smartTv;
-
-    @Column(name = "wifi")
     private boolean wifi;
-
-    @Column(name = "voice_control")
     private boolean voiceControl;
-
-    @Column(name = "hdr")
     private boolean hdr;
-
-    @Column(name = "bluetooth")
     private boolean bluetooth;
-
-    @Column(name = "ambi_light")
     private boolean ambiLight;
+    private Long remoteId;
+    private Long ciModuleId;
 
-    @Column(name = "remote_id")
-    private Long remoteId;  // Assuming remote_id is a foreign key reference
+    // Default constructor
+    public TelevisionDto() {}
 
-    @Column(name = "ci_module_id")
-    private Long ciModuleId;  // Assuming ci_module_id is a foreign key reference
-
-    // Default constructor (required by JPA)
-    public Television() {
-    }
-
-    // Getters and Setters for all fields
+    // Getters and Setters for all attributes
 
     public Long getId() {
         return id;
